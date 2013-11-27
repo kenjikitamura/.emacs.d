@@ -1,6 +1,9 @@
 
 ; ロードパス
-;(add-to-list 'load-path "/Users/kitamura/Dropbox/storage/emacs/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/rinari")
+(add-to-list 'load-path "~/.emacs.d/lisp/twittering-mode")
+(add-to-list 'load-path "~/.emacs.d/lisp/scala")
 
 ; 日本語環境
 (set-language-environment 'Japanese)
