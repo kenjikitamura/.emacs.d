@@ -4,6 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/rinari")
 (add-to-list 'load-path "~/.emacs.d/lisp/twittering-mode")
 (add-to-list 'load-path "~/.emacs.d/lisp/scala")
+(add-to-list 'load-path "~/.emacs.d/lisp/yasnippet")
 
 ; 日本語環境
 (set-language-environment 'Japanese)
@@ -221,3 +222,22 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;-------------------------------------------------------
+;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+	"~/.emacs.d/lisp/yasnippet/snippets"
+        ))
+(yas-global-mode 1)
+
+;(custom-set-variables '(yas-trigger-key "TAB"))
+
+;; 既存スニペットを挿入する
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+

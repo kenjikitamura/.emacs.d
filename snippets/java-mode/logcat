@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: logcat
+# key: logcat
+# --
+android.util.Log.d("kitamura","$0");
