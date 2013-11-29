@@ -76,7 +76,8 @@
 ; anything
 (require 'anything)
 (require 'anything-config)
-(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
+(global-set-key (kbd "C-x b") 'anything-for-files)
+(global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
 (define-key global-map (kbd "C-o") 'anything)
 (define-key global-map (kbd "C-;") 'anything)
@@ -90,8 +91,6 @@
 
 ;; Optionキーをメタキーとして使う
 (setq mac-option-modifier 'meta)
-
-
 
 ;; Cocoa emacs では、fontの設定を行う
 (when (eq window-system 'ns)
