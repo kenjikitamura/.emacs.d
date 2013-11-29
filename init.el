@@ -52,18 +52,24 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ; カレント行ハイライト
-;(defface hlline-face
-;  '((((class color)
-;      (background dark))
+(defface hlline-face
+  '((((class color)
+      (background dark))
 ;     (:background "dark slate gray"))
-;    (((class color)
-;      (background light))
-;     (:background  "#A8FBA8"))
-;    (t
-;     ()))
-;  "*Face used by hl-line.")
-;(setq hl-line-face 'hlline-face)
-;(global-hl-line-mode)
+     (:background "#202020"))
+    (((class color)
+      (background light))
+     (:background  "#A8FBA8"))
+    (t
+     ()))
+  "*Face used by hl-line.")
+(setq hl-line-face 'hlline-face)
+(global-hl-line-mode)
+
+;; ツールバーを非表示
+(tool-bar-mode -1)
+;; メニューバーを非表示
+(menu-bar-mode -1)
 
 
 ; package for 24.3
@@ -212,8 +218,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(custom-enabled-themes (quote (wheatgrass)))
- '(custom-safe-themes (quote ("fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" default))))
+ '(custom-enabled-themes (quote (wombat)))
+ '(custom-safe-themes (quote ("5b6a7f2a00275a5589b14fa23ff1699785d9f7c1722ee9f79ec1b7de92fa0935" "fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -240,8 +246,8 @@
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
 
-;(load-theme 'misterioso t)
+(setq custom-theme-directory "~/.emacs.d/themes/")
+;(load-theme 'wombat-custom t)
 (load-theme 'wombat t)
-;(enable-theme 'manoj-dark)
 ;(load-theme 'deeper-blue t)
 ;(enable-theme 'deeper-blue)
