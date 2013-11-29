@@ -1,4 +1,3 @@
-
 ; ロードパス
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/lisp/rinari")
@@ -241,3 +240,9 @@
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
+
+;(load-theme 'misterioso t)
+(load-theme 'wombat t)
+;(enable-theme 'manoj-dark)
+;(load-theme 'deeper-blue t)
+;(enable-theme 'deeper-blue)
