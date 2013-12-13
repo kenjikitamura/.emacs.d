@@ -251,3 +251,8 @@
 (load-theme 'wombat t)
 ;(load-theme 'deeper-blue t)
 ;(enable-theme 'deeper-blue)
+
+;; バックアップファイルの場所を変更
+(setq backup-directory-alist
+  (cons (cons ".*" (expand-file-name "~/.emacs.d/backup"))
+        backup-directory-alist))
