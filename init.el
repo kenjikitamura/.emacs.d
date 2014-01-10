@@ -262,5 +262,5 @@
 (global-auto-revert-mode 1)
 
 ;; org-mode
-(setq org-agenda-files '("~/Dropbox/work"))
+(setq org-agenda-files '("~/Dropbox/work/org"))
 
