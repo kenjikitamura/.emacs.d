@@ -87,7 +87,7 @@
 (define-key global-map (kbd "C-o") 'anything)
 (define-key global-map (kbd "C-;") 'anything)
 (define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
-(define-key global-map (kbd "C-u") 'other-window)
+;(define-key global-map (kbd "C-u") 'other-window)
 ;(define-key global-map (kbd "C-U") 'other-window-backword)
 
 ;; -----------------------------------------------
@@ -263,6 +263,10 @@
 
 ;; org-mode
 (setq org-agenda-files '("~/Dropbox/work/org"))
+(custom-set-variables
+  '(org-display-custom-times t)
+  '(org-time-stamp-custom-formats (quote ("<%Y年%m月%d日(%a)>" . "<%Y年%m月%d日(%a)%H時%M分>")))
+)
 
 
 ;; GTAGS
