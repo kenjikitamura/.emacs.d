@@ -68,7 +68,7 @@
 ;; ツールバーを非表示
 (tool-bar-mode -1)
 ;; メニューバーを非表示
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 
 
 ; package for 24.3
@@ -87,7 +87,7 @@
 (define-key global-map (kbd "C-o") 'anything)
 (define-key global-map (kbd "C-;") 'anything)
 (define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
-(define-key global-map (kbd "C-u") 'other-window)
+;(define-key global-map (kbd "C-u") 'other-window)
 ;(define-key global-map (kbd "C-U") 'other-window-backword)
 
 ;; -----------------------------------------------
@@ -263,7 +263,24 @@
 
 ;; org-mode
 (setq org-agenda-files '("~/Dropbox/work/org"))
+(custom-set-variables
+  '(org-display-custom-times t)
+  '(org-time-stamp-custom-formats (quote ("<%Y年%m月%d日(%a)>" . "<%Y年%m月%d日(%a)%H時%M分>")))
+)
 
+
+<<<<<<< HEAD
 ;; navi2ch
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
+=======
+;; GTAGS
+(autoload 'gtags-mode "gtags" "" t)
+(setq gtags-mode-hook
+      '(lambda ()
+         (local-set-key "\M-t" 'gtags-find-tag)
+         (local-set-key "\M-r" 'gtags-find-rtag)
+         (local-set-key "\M-s" 'gtags-find-symbol)
+         (local-set-key "\C-t" 'gtags-pop-stack)
+         ))
+>>>>>>> d1aaa8b228d926cb7b33cc7c3cedb812fca39258
