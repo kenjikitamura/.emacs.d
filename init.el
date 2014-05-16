@@ -264,3 +264,6 @@
 ;; org-mode
 (setq org-agenda-files '("~/Dropbox/work/org"))
 
+;; navi2ch
+(add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
+(autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
