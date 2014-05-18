@@ -148,8 +148,8 @@
 
 ;; Rinari : Ruby on Rails Minor Mode for Emacs
 ;; Interactively Do Things (highly recommended, but not strictly required)
-(require 'ido)
-(ido-mode t)
+;(require 'ido)
+;(ido-mode t)
 ;; Rinari
 (add-to-list 'load-path "~/path/to/your/elisp/rinari")
 (require 'rinari)
@@ -278,3 +278,17 @@
          (local-set-key "\M-s" 'gtags-find-symbol)
          (local-set-key "\C-t" 'gtags-pop-stack)
          ))
+
+; scheme
+(setq scheme-program-name "gosh")
+(require 'cmuscheme)
+
+(defun scheme-other-window ()
+  "Run scheme on other window"
+  (interactive)
+  (switch-to-buffer-other-window
+   (get-buffer-create "*scheme*"))
+  (run-scheme scheme-program-name))
+
+(define-key global-map
+  "\C-cS" 'scheme-other-window)
