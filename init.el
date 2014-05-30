@@ -86,7 +86,7 @@
 
 ;(define-key global-map (kbd "C-o") 'anything)
 ;(define-key global-map (kbd "C-;") 'anything)
-;(define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
+(define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
 ;(define-key global-map (kbd "C-u") 'other-window)
 ;(define-key global-map (kbd "C-U") 'other-window-backword)
 
