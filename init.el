@@ -292,3 +292,6 @@
 
 (define-key global-map
   "\C-cS" 'scheme-other-window)
+
+;; minibuf-isearch
+(require 'minibuf-isearch)
