@@ -240,7 +240,7 @@
         ))
 (yas-global-mode 1)
 
-;(custom-set-variables '(yas-trigger-key "TAB"))
+(custom-set-variables '(yas-trigger-key "TAB"))
 
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
@@ -332,6 +332,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/helm")
 (require 'helm-config)
 (require 'helm-ag)
+(require 'helm-ls-git)
 
 ; Helm Descbinds
 (require 'helm-descbinds)
@@ -339,7 +340,12 @@
 ;; prior to emacs24
 (helm-descbinds-mode 1)
 
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-l") 'helm-mini)
+(global-set-key (kbd "C-o") 'helm-ls-git-ls)
+;(global-set-key (kbd "C-o") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
