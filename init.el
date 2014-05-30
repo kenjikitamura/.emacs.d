@@ -293,6 +293,34 @@
 (define-key global-map
   "\C-cS" 'scheme-other-window)
 
+;; タブを使わず、スペースを使う
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+;; タブ、全角スペース表示
+(defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
+(defface my-face-b-1 '((t (:background "dark turquoise"))) nil)
+(defface my-face-b-2 '((t (:background "cyan"))) nil)
+(defface my-face-b-2 '((t (:background "SeaGreen"))) nil)
+(defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
+(defvar my-face-b-1 'my-face-b-1)
+(defvar my-face-b-2 'my-face-b-2)
+(defvar my-face-u-1 'my-face-u-1)
+(defadvice font-lock-mode (before my-font-lock-mode ())
+  (font-lock-add-keywords
+   major-mode
+   '(
+     ("　" 0 my-face-b-1 append)
+     ("\t" 0 my-face-b-2 append)
+     ("[ ]+$" 0 my-face-u-1 append)
+     )))
+(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
+(ad-activate 'font-lock-mode)
+(add-hook 'find-file-hooks '(lambda ()
+                              (if font-lock-mode
+                                  nil
+                                (font-lock-mode t))))
+
+
 ;; minibuf-isearch
 (require 'minibuf-isearch)
 
