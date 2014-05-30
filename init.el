@@ -79,14 +79,14 @@
 (package-initialize)
 
 ; anything
-(require 'anything)
-(require 'anything-config)
-(global-set-key (kbd "C-x b") 'anything-for-files)
-(global-set-key (kbd "M-y") 'anything-show-kill-ring)
+;(require 'anything)
+;(require 'anything-config)
+;(global-set-key (kbd "C-x b") 'anything-for-files)
+;(global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
-(define-key global-map (kbd "C-o") 'anything)
-(define-key global-map (kbd "C-;") 'anything)
-(define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
+;(define-key global-map (kbd "C-o") 'anything)
+;(define-key global-map (kbd "C-;") 'anything)
+;(define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
 ;(define-key global-map (kbd "C-u") 'other-window)
 ;(define-key global-map (kbd "C-U") 'other-window-backword)
 
@@ -295,3 +295,24 @@
 
 ;; minibuf-isearch
 (require 'minibuf-isearch)
+
+;; helm
+(add-to-list 'load-path "~/.emacs.d/lisp/helm")
+(require 'helm-config)
+
+; Helm Descbinds
+(require 'helm-descbinds)
+
+;; prior to emacs24
+(helm-descbinds-mode 1)
+
+(global-set-key (kbd "C-j") 'helm-mini)
+(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-c b") 'helm-descbinds)
+(global-set-key (kbd "C-c o") 'helm-occur)
+(global-set-key (kbd "C-c s") 'helm-ag)
+(global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+
+
+
+
