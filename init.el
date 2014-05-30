@@ -299,6 +299,7 @@
 ;; helm
 (add-to-list 'load-path "~/.emacs.d/lisp/helm")
 (require 'helm-config)
+(require 'helm-ag)
 
 ; Helm Descbinds
 (require 'helm-descbinds)
