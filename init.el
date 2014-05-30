@@ -219,7 +219,11 @@
  '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes (quote ("5b6a7f2a00275a5589b14fa23ff1699785d9f7c1722ee9f79ec1b7de92fa0935" "fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" default)))
- '(org-agenda-files nil))
+ '(org-agenda-files nil)
+ '(column-number-mode t)
+ '(global-linum-mode t)
+ '(line-number-mode t)
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -232,7 +236,7 @@
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"
-	"~/.emacs.d/lisp/yasnippet/snippets"
+        "~/.emacs.d/lisp/yasnippet/snippets"
         ))
 (yas-global-mode 1)
 
@@ -335,13 +339,17 @@
 ;; prior to emacs24
 (helm-descbinds-mode 1)
 
-(global-set-key (kbd "C-j") 'helm-mini)
+(global-set-key (kbd "C-l") 'helm-mini)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
 
+; goto
+(global-set-key "\M-g" 'goto-line)
 
-
+; 行番号の設定
+(custom-set-faces
+ '(linum ((t (:inherit (shadow default) :background "Gray40")))))
 
