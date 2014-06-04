@@ -359,3 +359,19 @@
 (custom-set-faces
  '(linum ((t (:inherit (shadow default) :background "Gray40")))))
 
+; Highlight-synbol
+(require 'highlight-symbol)
+(setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1"))
+
+;; 適宜keybindの設定
+(global-set-key (kbd "<f3>") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-<f3>") 'highlight-symbol-remove-all)
+
+
+;; C-s C-wでカーソル上の単語検索
+(defun isearch-forward-with-heading ()
+  "Search the word your cursor looking at."
+  (interactive)
+  (command-execute 'backward-word)
+  (command-execute 'isearch-forward))
+(global-set-key (kbd "C-s") 'isearch-forward-with-heading)
