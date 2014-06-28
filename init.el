@@ -363,3 +363,6 @@
   (command-execute 'backward-word)
   (command-execute 'isearch-forward))
 (global-set-key (kbd "C-s") 'isearch-forward-with-heading)
+
+;; スクリプトっぽかったら勝手に実行ビットを立てる
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
