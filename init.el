@@ -363,3 +363,6 @@
   (command-execute 'backward-word)
   (command-execute 'isearch-forward))
 (global-set-key (kbd "C-s") 'isearch-forward-with-heading)
+
+;; Ctrl+Zで最小化しない
+(define-key global-map "\C-z" 'recenter)
