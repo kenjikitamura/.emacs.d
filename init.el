@@ -366,3 +366,7 @@
 
 ;; Ctrl+Zで最小化しない
 (define-key global-map "\C-z" 'recenter)
+
+;; スクリプトっぽかったら勝手に実行ビットを立てる
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
