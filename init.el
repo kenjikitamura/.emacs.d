@@ -79,13 +79,13 @@
 (package-initialize)
 
 ; anything
-(require 'anything)
-(require 'anything-config)
-(global-set-key (kbd "C-x b") 'anything-for-files)
-(global-set-key (kbd "M-y") 'anything-show-kill-ring)
+;(require 'anything)
+;(require 'anything-config)
+;(global-set-key (kbd "C-x b") 'anything-for-files)
+;(global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
-(define-key global-map (kbd "C-o") 'anything)
-(define-key global-map (kbd "C-;") 'anything)
+;(define-key global-map (kbd "C-o") 'anything)
+;(define-key global-map (kbd "C-;") 'anything)
 (define-key global-map (kbd "\C-x\C-b") 'electric-buffer-list)
 ;(define-key global-map (kbd "C-u") 'other-window)
 ;(define-key global-map (kbd "C-U") 'other-window-backword)
@@ -148,8 +148,8 @@
 
 ;; Rinari : Ruby on Rails Minor Mode for Emacs
 ;; Interactively Do Things (highly recommended, but not strictly required)
-(require 'ido)
-(ido-mode t)
+;(require 'ido)
+;(ido-mode t)
 ;; Rinari
 (add-to-list 'load-path "~/path/to/your/elisp/rinari")
 (require 'rinari)
@@ -211,15 +211,7 @@
                                   ([(control tab)] nil))
       (local-set-key [(return)] 'newline-and-indent))))
 (add-hook 'scala-mode-hook 'jaspace-mode)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("5b6a7f2a00275a5589b14fa23ff1699785d9f7c1722ee9f79ec1b7de92fa0935" "fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" default)))
- '(org-agenda-files nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -232,11 +224,11 @@
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"
-	"~/.emacs.d/lisp/yasnippet/snippets"
+        "~/.emacs.d/lisp/yasnippet/snippets"
         ))
 (yas-global-mode 1)
 
-;(custom-set-variables '(yas-trigger-key "TAB"))
+(custom-set-variables '(yas-trigger-key "TAB"))
 
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
@@ -269,11 +261,10 @@
 )
 
 
-<<<<<<< HEAD
 ;; navi2ch
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
-=======
+
 ;; GTAGS
 (autoload 'gtags-mode "gtags" "" t)
 (setq gtags-mode-hook
@@ -283,4 +274,104 @@
          (local-set-key "\M-s" 'gtags-find-symbol)
          (local-set-key "\C-t" 'gtags-pop-stack)
          ))
->>>>>>> d1aaa8b228d926cb7b33cc7c3cedb812fca39258
+
+; scheme
+(setq scheme-program-name "gosh")
+(require 'cmuscheme)
+
+(defun scheme-other-window ()
+  "Run scheme on other window"
+  (interactive)
+  (switch-to-buffer-other-window
+   (get-buffer-create "*scheme*"))
+  (run-scheme scheme-program-name))
+
+(define-key global-map
+  "\C-cS" 'scheme-other-window)
+
+;; タブを使わず、スペースを使う
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+;; タブ、全角スペース表示
+(defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
+(defface my-face-b-1 '((t (:background "dark turquoise"))) nil)
+(defface my-face-b-2 '((t (:background "cyan"))) nil)
+(defface my-face-b-2 '((t (:background "SeaGreen"))) nil)
+(defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
+(defvar my-face-b-1 'my-face-b-1)
+(defvar my-face-b-2 'my-face-b-2)
+(defvar my-face-u-1 'my-face-u-1)
+(defadvice font-lock-mode (before my-font-lock-mode ())
+  (font-lock-add-keywords
+   major-mode
+   '(
+     ("　" 0 my-face-b-1 append)
+     ("\t" 0 my-face-b-2 append)
+     ("[ ]+$" 0 my-face-u-1 append)
+     )))
+(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
+(ad-activate 'font-lock-mode)
+(add-hook 'find-file-hooks '(lambda ()
+                              (if font-lock-mode
+                                  nil
+                                (font-lock-mode t))))
+
+
+;; minibuf-isearch
+(require 'minibuf-isearch)
+
+;; helm
+(add-to-list 'load-path "~/.emacs.d/lisp/helm")
+(require 'helm-config)
+(require 'helm-ag)
+(require 'helm-ls-git)
+
+; Helm Descbinds
+(require 'helm-descbinds)
+
+;; prior to emacs24
+(helm-descbinds-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-l") 'helm-mini)
+(global-set-key (kbd "C-o") 'helm-ls-git-ls)
+;(global-set-key (kbd "C-o") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-c b") 'helm-descbinds)
+(global-set-key (kbd "C-c o") 'helm-occur)
+(global-set-key (kbd "C-c s") 'helm-ag)
+(global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+
+; goto
+(global-set-key "\M-g" 'goto-line)
+
+; 行番号の設定
+(custom-set-faces
+ '(linum ((t (:inherit (shadow default) :background "Gray40")))))
+
+; Highlight-synbol
+(require 'highlight-symbol)
+(setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1"))
+
+;; 適宜keybindの設定
+(global-set-key (kbd "<f3>") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-<f3>") 'highlight-symbol-remove-all)
+
+
+;; C-s C-wでカーソル上の単語検索
+(defun isearch-forward-with-heading ()
+  "Search the word your cursor looking at."
+  (interactive)
+  (command-execute 'backward-word)
+  (command-execute 'isearch-forward))
+(global-set-key (kbd "C-s") 'isearch-forward-with-heading)
+
+;; Ctrl+Zで最小化しない
+(define-key global-map "\C-z" 'recenter)
+
+;; スクリプトっぽかったら勝手に実行ビットを立てる
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+
