@@ -370,3 +370,6 @@
 ;; スクリプトっぽかったら勝手に実行ビットを立てる
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+; 対応する括弧の表示
+(show-paren-mode t)
+
