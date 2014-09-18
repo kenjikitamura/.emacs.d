@@ -329,6 +329,21 @@
 ; Helm Descbinds
 (require 'helm-descbinds)
 
+; Helm Settings
+(progn
+  (custom-set-variables
+   '(helm-truncate-lines t)
+   '(helm-buffer-max-length 40)
+   '(helm-delete-minibuffer-contents-from-point t)
+   '(helm-ff-skip-boring-files t)
+   '(helm-boring-file-regexp-list '("~$" "\\.elc$"))
+   '(helm-ls-git-show-abs-or-relative 'relative)
+   '(helm-mini-default-sources '(helm-source-buffers-list
+                                 helm-source-ls-git
+                                 helm-source-recentf
+                                 helm-source-buffer-not-found))))
+
+
 ;; prior to emacs24
 (helm-descbinds-mode 1)
 
