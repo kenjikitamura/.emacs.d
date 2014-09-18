@@ -261,6 +261,10 @@
 )
 
 
+;; navi2ch
+(add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
+(autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
+
 ;; GTAGS
 (autoload 'gtags-mode "gtags" "" t)
 (setq gtags-mode-hook
@@ -325,6 +329,21 @@
 ; Helm Descbinds
 (require 'helm-descbinds)
 
+; Helm Settings
+(progn
+  (custom-set-variables
+   '(helm-truncate-lines t)
+   '(helm-buffer-max-length 40)
+   '(helm-delete-minibuffer-contents-from-point t)
+   '(helm-ff-skip-boring-files t)
+   '(helm-boring-file-regexp-list '("~$" "\\.elc$"))
+   '(helm-ls-git-show-abs-or-relative 'relative)
+   '(helm-mini-default-sources '(helm-source-buffers-list
+                                 helm-source-ls-git
+                                 helm-source-recentf
+                                 helm-source-buffer-not-found))))
+
+
 ;; prior to emacs24
 (helm-descbinds-mode 1)
 
@@ -348,8 +367,13 @@
  '(linum ((t (:inherit (shadow default) :background "Gray40")))))
 
 ; Highlight-synbol
+; C-x C-hでハイライトON/OFF
 (require 'highlight-symbol)
 (setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1"))
+(global-set-key "\C-x\C-h" 'highlight-symbol-at-point)
+;(global-set-key [f3] 'highlight-symbol-next)
+;(global-set-key [(shift f3)] 'highlight-symbol-prev)
+;(global-set-key [(meta f3)] 'highlight-symbol-query-replace) ; ハイライトを置換
 
 ;; 適宜keybindの設定
 (global-set-key (kbd "<f3>") 'highlight-symbol-at-point)
@@ -372,4 +396,22 @@
 
 ; 対応する括弧の表示
 (show-paren-mode t)
+
+; Enhanced Ruby Mode
+(add-to-list 'load-path "~/.emacs.d/lisp/enhanced-ruby-mode") ; must be added after any path containing old ruby-mode
+(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+; ruby-electric
+(add-to-list 'load-path "~/.emacs.d/lisp/ruby-electric")
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
+
+;; ruby-block.el --- highlight matching block
+(require 'ruby-block)
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle t)
+
 
