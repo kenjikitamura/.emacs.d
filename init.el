@@ -160,6 +160,7 @@
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/Users/kitamura/Dropbox/storage/emacs/site-lisp/auto-complete-1.3.1/ac-dict")
+(add-to-list 'ac-modes 'java-mode)
 (ac-config-default)
 
 ;; Twitter
