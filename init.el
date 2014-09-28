@@ -363,6 +363,10 @@
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
 
+; helmのminibufferでC-hを有効にする設定
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+
 ; goto
 (global-set-key "\M-g" 'goto-line)
 
@@ -430,6 +434,7 @@
 ;;         web-modeの設定
 ;;==========================================================
 (require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
 (defun web-mode-hook ()
   "Hooks for Web mode."
   ;; 変更日時の自動修正
