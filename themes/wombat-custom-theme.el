@@ -21,7 +21,7 @@
 
 ;;; Code:
 
-(deftheme wombat
+(deftheme wombat-custom
   "Custom! Medium-contrast faces with a dark gray background.
 Adapted, with permission, from a Vim color scheme by Lars H. Nielsen.
 Basic, Font Lock, Isearch, Gnus, Message, and Ansi-Color faces
@@ -29,7 +29,7 @@ are included.")
 
 (let ((class '((class color) (min-colors 89))))
   (custom-theme-set-faces
-   'wombat
+   'wombat-custom
 ;   `(default ((,class (:background "#242424" :foreground "#f6f3e8"))))
    `(default ((,class (:background "#000000" :foreground "#f6f3e8"))))
    `(cursor ((,class (:background "#656565"))))
@@ -96,11 +96,11 @@ are included.")
    `(message-separator ((,class (:foreground "#e5786d" :weight bold))))))
 
 (custom-theme-set-variables
- 'wombat
+ 'wombat-custom
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682"
 			    "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]))
 
-(provide-theme 'wombat)
+(provide-theme 'wombat-custom)
 
 ;; Local Variables:
 ;; no-byte-compile: t
