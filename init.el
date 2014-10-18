@@ -495,3 +495,24 @@
  '(web-mode-css-at-rule-face
    ((t (:foreground "#FF7F00"))))                          ; cssのタグ
 )
+
+; direx
+(require 'direx)
+;(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+
+; popwin
+(require 'popwin)
+(popwin-mode 1)
+
+; direxをpopwin
+(push '(direx:direx-mode :position left :width 25 :dedicated t)
+      popwin:special-display-config)
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+
+; helmをpopwin
+(when (require 'popwin)
+  (setq helm-samewindow nil)
+  (setq display-buffer-function 'popwin:display-buffer)
+  (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
+                                        ("helm" :regexp t :height 0.4)
+                                        )))
