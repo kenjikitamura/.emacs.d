@@ -519,3 +519,18 @@
   (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
                                         ("helm" :regexp t :height 0.4)
                                         )))
+
+; バッファ名が同じ場合に、ディレクトリ名を表示する
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-ignore-buffers-re "*[^*]+*")
+
+; 動的略語補完
+(global-set-key (kbd "C-q") 'dabbrev-expand)
+
+; redo
+(require 'redo+)
+(global-set-key (kbd "C-M-/") 'redo)
+(setq undo-no-redo t)
+(setq undo-limit 60000)
+(setq undo-strong-limit 900000)
