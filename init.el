@@ -145,6 +145,7 @@
 (run-with-idle-timer 5 t 'auto-save-buffers) 
 
 
+; server
 (require 'server)
 (unless (server-running-p)
   (server-start))
@@ -526,11 +527,18 @@
 (setq uniquify-ignore-buffers-re "*[^*]+*")
 
 ; 動的略語補完
-(global-set-key (kbd "C-q") 'dabbrev-expand)
+(global-set-key (kbd "C-t") 'dabbrev-expand)
 
 ; redo
 (require 'redo+)
-(global-set-key (kbd "C-M-/") 'redo)
+(global-set-key (kbd "C-/") 'undo)
+(global-set-key (kbd "M-/") 'redo)
 (setq undo-no-redo t)
 (setq undo-limit 60000)
 (setq undo-strong-limit 900000)
+
+; goto-chg.el 最後に編集した場所へジャンプする
+(require 'goto-chg)
+(define-key global-map (kbd "C-x C-o") 'goto-last-change)
+(define-key global-map (kbd "C-x C-S-o") 'goto-last-change-reverse)
+
