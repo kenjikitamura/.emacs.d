@@ -75,11 +75,15 @@
 
 
 ; package for 24.3
-(require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
+(if (>= emacs-major-version 23)
+    (progn
+      (require 'package)
+      (add-to-list 'package-archives 
+                   '("marmalade" .
+                     "http://marmalade-repo.org/packages/"))
+      (package-initialize))
+  )
+
 
 ; anything
 ;(require 'anything)
@@ -539,6 +543,6 @@
 
 ; goto-chg.el 最後に編集した場所へジャンプする
 (require 'goto-chg)
-(define-key global-map (kbd "C-x C-o") 'goto-last-change)
-(define-key global-map (kbd "C-x C-S-o") 'goto-last-change-reverse)
+(define-key global-map (kbd "C-x C-l") 'goto-last-change)
+(define-key global-map (kbd "C-x C-S-l") 'goto-last-change-reverse)
 
