@@ -71,7 +71,7 @@
 ;; ツールバーを非表示
 (tool-bar-mode -1)
 ;; メニューバーを非表示
-(menu-bar-mode 1)
+(menu-bar-mode -1)
 
 
 ; package for 24.3
@@ -546,3 +546,8 @@
 (define-key global-map (kbd "C-x C-l") 'goto-last-change)
 (define-key global-map (kbd "C-x C-S-l") 'goto-last-change-reverse)
 
+
+; quickrun
+(require 'quickrun)
+(push '("*quickrun*") popwin:special-display-config)
+(global-set-key (kbd "C-c r") 'quickrun)
