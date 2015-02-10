@@ -30,11 +30,12 @@
 
 ; Macで濁点が一つの文字にならない設定
 (if (equal system-type 'darwin)
-    (if (>= emacs-major-version 23)
+    (if (= emacs-major-version 23)
         (set-file-name-coding-system 'utf-8-nfd)
-      (progn
-        (require 'utf-8m)
-        (set-file-name-coding-system 'utf-8m)))
+      (if (< emacs-major-version 23)
+	  (progn
+	    (require 'utf-8m)
+	    (set-file-name-coding-system 'utf-8m))))
   (setq file-name-coding-system 'utf-8-unix))
 
 ; ファイルを開く際に一つのWindowを使う for Mac
@@ -668,3 +669,30 @@ static char * arrow_right[] = {
 (package-initialize)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+
+; フレーム移動
+(global-set-key (kbd "C-c C-o") 'other-frame)
+(define-key org-mode-map (kbd "C-c C-o") nil) ; org-modeのキーバインドを削除
+;; (makunbound 'overriding-minor-mode-map)
+(define-minor-mode overriding-minor-mode
+  "強制的にC-c C-oを割り当てる"             ;説明文字列
+  t                                     ;デフォルトで有効にする
+  ""                                    ;モードラインに表示しない
+  `((,(kbd "C-c C-o") . other-frame)))
+
+; EMP用スクロール設定 効いていない？
+(setq scroll-conservatively 35
+  scroll-margin 0
+  scroll-step 1)
+
+; 24.4用フォント設定
+(set-face-attribute 'default nil :family "Menlo" :height 140)
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  (font-spec :family "Hiragino Kaku Gothic ProN"))
+(add-to-list 'face-font-rescale-alist
+             '(".*Hiragino Kaku Gothic ProN.*" . 1.2))
+
+(mac-auto-ascii-mode 1)
+
