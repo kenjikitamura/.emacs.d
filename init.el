@@ -705,3 +705,6 @@ static char * arrow_right[] = {
   "set frame parameter 'alpha"
   (interactive "nAlpha: ")
   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
+
+;; インクリメンタル中に検索キーワードをBSで削除
+(define-key isearch-mode-map "\C-h" 'isearch-delete-char)
