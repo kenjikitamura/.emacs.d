@@ -19,6 +19,7 @@
   (require 'ucs-normalize)
   (setq file-name-coding-system 'utf-8-hfs)
   (setq locale-coding-system 'utf-8-hfs)
+  (mac-auto-ascii-mode 1)
   )
  (t
   (setq file-name-coding-system 'utf-8)
@@ -688,13 +689,14 @@ static char * arrow_right[] = {
 
 ; 24.4用フォント設定
 (set-face-attribute 'default nil :family "Menlo" :height 140)
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0208
-                  (font-spec :family "Hiragino Kaku Gothic ProN"))
+(if (display-graphic-p)
+    (set-fontset-font (frame-parameter nil 'font)
+                      'japanese-jisx0208
+                      (font-spec :family "Hiragino Kaku Gothic ProN")))
 (add-to-list 'face-font-rescale-alist
              '(".*Hiragino Kaku Gothic ProN.*" . 1.2))
 
-(mac-auto-ascii-mode 1)
+
 
 
 ;; 透明度を変更するコマンド M-x set-alpha
