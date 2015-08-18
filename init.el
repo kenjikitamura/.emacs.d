@@ -717,3 +717,10 @@ static char * arrow_right[] = {
 ;; git
 (unless (package-installed-p 'magit)
   (package-refresh-contents) (package-install 'magit))
+
+;; neotree
+(unless (package-installed-p 'neotree)
+  (package-refresh-contents) (package-install 'neotree))
+
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
