@@ -680,7 +680,11 @@ static char * arrow_right[] = {
   "強制的にC-c C-oを割り当てる"             ;説明文字列
   t                                     ;デフォルトで有効にする
   ""                                    ;モードラインに表示しない
-  `((,(kbd "C-c C-o") . other-frame)))
+  `(
+    (,(kbd "C-c C-o") . other-frame)
+    ;; helm-swoop
+    (, (kbd "C-c C-s") . helm-swoop)
+    ))
 
 ; EMP用スクロール設定 効いていない？
 (setq scroll-conservatively 35
@@ -708,3 +712,8 @@ static char * arrow_right[] = {
 
 ;; インクリメンタル中に検索キーワードをBSで削除
 (define-key isearch-mode-map "\C-h" 'isearch-delete-char)
+
+
+;; git
+(unless (package-installed-p 'magit)
+  (package-refresh-contents) (package-install 'magit))
