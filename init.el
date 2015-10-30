@@ -1,6 +1,7 @@
 ; ロードパス
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/lisp/rinari")
+(add-to-list 'load-path "~/.emacs.d/lisp/scala-mode2")
 (add-to-list 'load-path "~/.emacs.d/lisp/twittering-mode")
 (add-to-list 'load-path "~/.emacs.d/lisp/scala")
 (add-to-list 'load-path "~/.emacs.d/lisp/yasnippet")
@@ -34,9 +35,9 @@
     (if (= emacs-major-version 23)
         (set-file-name-coding-system 'utf-8-nfd)
       (if (< emacs-major-version 23)
-	  (progn
-	    (require 'utf-8m)
-	    (set-file-name-coding-system 'utf-8m))))
+          (progn
+            (require 'utf-8m)
+            (set-file-name-coding-system 'utf-8m))))
   (setq file-name-coding-system 'utf-8-unix))
 
 ; ファイルを開く際に一つのWindowを使う for Mac
@@ -212,8 +213,7 @@
   (unless (y-or-n-p "Really exit emacs? ")
     (keyboard-quit)))
 
-
-(require 'scala-mode)
+(require 'scala-mode2)
 (add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
 (add-hook 'scala-mode-hook
   (function
