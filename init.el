@@ -161,7 +161,6 @@
 ;(require 'ido)
 ;(ido-mode t)
 ;; Rinari
-(add-to-list 'load-path "~/path/to/your/elisp/rinari")
 (require 'rinari)
 
 
@@ -724,3 +723,10 @@ static char * arrow_right[] = {
 
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+
+(require 'javadoc-lookup)
+(global-set-key (kbd "C-x j") 'javadoc-lookup)
+(javadoc-add-roots
+ "~/javadoc")
+
+(require 'hello)
