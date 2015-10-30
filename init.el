@@ -6,6 +6,44 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/scala")
 (add-to-list 'load-path "~/.emacs.d/lisp/yasnippet")
 
+;; set load-path
+(setq load-path
+      (append '(
+                "~/.emacs.d/conf"
+                ) load-path))
+
+;; Emacs24用Melpa設定
+(package-initialize)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; install if not installed
+(eval-when-compile (require 'cl))
+(defvar my-package-list
+  '(auto-async-byte-compile
+    auto-complete
+    cperl-mode
+    direx
+    helm
+    helm-ag
+    helm-descbinds
+    helm-ls-git
+    helm-swoop
+    magit
+    markdown-mode
+    open-junk-file
+    recentf-ext
+    ruby-mode
+    yasnippet))
+(let ((not-installed
+       (loop for package in my-package-list
+             when (not (package-installed-p package))
+             collect package)))
+  (when not-installed
+    (package-refresh-contents)
+    (dolist (package not-installed)
+            (package-install package))))
+
 ; 日本語環境
 (set-language-environment 'Japanese)
 
@@ -335,7 +373,9 @@
 (require 'minibuf-isearch)
 
 ;; helm
-(add-to-list 'load-path "~/.emacs.d/lisp/helm")
+(unless (package-installed-p 'helm)
+  (package-refresh-contents) (package-install 'helm))
+(require 'helm)
 (require 'helm-config)
 (require 'helm-ag)
 (require 'helm-ls-git)
@@ -520,12 +560,12 @@
 (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
 
 ; helmをpopwin
-(when (require 'popwin)
-  (setq helm-samewindow nil)
-  (setq display-buffer-function 'popwin:display-buffer)
-  (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
-                                        ("helm" :regexp t :height 0.4)
-                                        )))
+;(when (require 'popwin)
+;  (setq helm-samewindow nil)
+;  (setq display-buffer-function 'popwin:display-buffer)
+;  (setq popwin:special-display-config '(("*compilatoin*" :noselect t)
+;                                        ("helm" :regexp t :height 0.4)
+;                                        )))
 
 ; バッファ名が同じ場合に、ディレクトリ名を表示する
 (require 'uniquify)
@@ -666,11 +706,6 @@ static char * arrow_right[] = {
                     :foreground "#fff"
                     :background color4)
 
-;; Emacs24用Melpa設定
-(package-initialize)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 
 ; フレーム移動
 (global-set-key (kbd "C-c C-o") 'other-frame)
@@ -721,6 +756,14 @@ static char * arrow_right[] = {
 ;; neotree
 (unless (package-installed-p 'neotree)
   (package-refresh-contents) (package-install 'neotree))
-
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+(when neo-persist-show
+  (add-hook 'popwin:before-popup-hook
+            (lambda () (setq neo-persist-show nil)))
+  (add-hook 'popwin:after-popup-hook
+            (lambda () (setq neo-persist-show t))))
+
+
+;; Ensime
+(load "ensime-conf.el")
