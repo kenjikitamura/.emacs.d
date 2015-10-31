@@ -757,10 +757,10 @@ static char * arrow_right[] = {
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-(require 'javadoc-lookup)
-(global-set-key (kbd "C-x j") 'javadoc-lookup)
-(javadoc-add-roots
- "~/javadoc")
+;;(require 'javadoc-lookup)
+;;(global-set-key (kbd "C-x j") 'javadoc-lookup)
+;;(javadoc-add-roots
+;; "~/javadoc")
 
 (when neo-persist-show
   (add-hook 'popwin:before-popup-hook
