@@ -38,6 +38,7 @@
     recentf-ext
     ruby-mode
     neotree
+    git-gutter
     scala-mode2
     yasnippet))
 (let ((not-installed
@@ -772,3 +773,9 @@ static char * arrow_right[] = {
 ;; Ensime
 (load "ensime-conf.el")
 
+;; git-guitter
+;; git-gutter
+(global-git-gutter-mode t)
+
+;;
+(ffap-bindings)
