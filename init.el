@@ -797,3 +797,6 @@ static char * arrow_right[] = {
             (auto-fill-mode 1)
             (if (eq window-system 'x)
                 (font-lock-mode 1))))
+
+;; Javascript tab
+(setq js-indent-level 2)
