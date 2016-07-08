@@ -429,6 +429,9 @@
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-c i") 'helm-imenu)
+(global-set-key (kbd "C-c I") 'helm-imenu-in-all-buffers)
+
 
 ; helmのminibufferでC-hを有効にする設定
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
@@ -813,3 +816,8 @@ static char * arrow_right[] = {
 (when (require 'saveplace nil t)
   (setq-default save-place t)
   (setq save-place-file "~/.emacs.d/saved-places"))
+(which-function-mode 1)
+
+(require 'powerline)
+(load "powerline-themes.el")
+(powerline-default-theme)
