@@ -32,6 +32,7 @@
     helm-descbinds
     helm-ls-git
     helm-swoop
+    helm-gtags
     magit
     markdown-mode
     open-junk-file
@@ -328,15 +329,26 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
 
+
 ;; GTAGS
-(autoload 'gtags-mode "gtags" "" t)
+(require 'gtags)
 (setq gtags-mode-hook
       '(lambda ()
-         (local-set-key "\M-t" 'gtags-find-tag)
-         (local-set-key "\M-r" 'gtags-find-rtag)
-         (local-set-key "\M-s" 'gtags-find-symbol)
-         (local-set-key "\C-t" 'gtags-pop-stack)
-         ))
+         (local-set-key (kbd "C-c t") 'helm-gtags-find-tag)
+         (local-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
+         (local-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
+         (local-set-key (kbd "C-c p") 'helm-gtags-pop-stack)))
+
+;;; hook for gtags
+(add-hook 'c-mode-common-hook 'gtags-mode)
+(add-hook 'c++-mode-hook 'gtags-mode)
+(add-hook 'java-mode-hook 'gtags-mode)
+(add-hook 'asm-mode 'gtags-mode)
+
+;(global-set-key (kbd "C-c t") 'gtags-find-tag)
+;(global-set-key (kbd "C-c r") 'gtags-find-rtag)
+;(global-set-key (kbd "C-c s") 'gtags-find-symbol)
+;(global-set-key (kbd "C-c p") 'gtags-pop-stack)
 
 ; scheme
 (setq scheme-program-name "gosh")
@@ -423,6 +435,9 @@
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-c i") 'helm-imenu)
+(global-set-key (kbd "C-c I") 'helm-imenu-in-all-buffers)
+
 
 ; helmのminibufferでC-hを有効にする設定
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
@@ -792,3 +807,38 @@ static char * arrow_right[] = {
 (setq dired-recursive-copies 'always)
 ;; diredバッファでC-sした時にファイル名だけにマッチするように
 (setq dired-isearch-filenames t)
+
+(setq dired-dwim-target t)
+
+;(add-to-list 'load-path "~/Dropbox/work/lisp/")
+;(add-to-list 'load-path "~/Dropbox/work/lisp/helm-javadoc-lookup")
+
+;(require 'helm-javadoc-lookup)
+;(global-set-key (kbd "C-c j") 'helm-javadoc-lookup)
+
+;; Octave
+(autoload 'octave-mode "octave-mod" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
+
+
+;; Javascript tab
+(setq js-indent-level 2)
+
+(when (require 'saveplace nil t)
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saved-places"))
+
+(which-function-mode 1)
+
+(require 'powerline)
+(load "powerline-themes.el")
+(powerline-default-theme)
+
+
