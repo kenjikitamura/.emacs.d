@@ -813,11 +813,17 @@ static char * arrow_right[] = {
             (if (eq window-system 'x)
                 (font-lock-mode 1))))
 
+
+;; Javascript tab
+(setq js-indent-level 2)
+
 (when (require 'saveplace nil t)
   (setq-default save-place t)
   (setq save-place-file "~/.emacs.d/saved-places"))
+
 (which-function-mode 1)
 
 (require 'powerline)
 (load "powerline-themes.el")
 (powerline-default-theme)
+
