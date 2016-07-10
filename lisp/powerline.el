@@ -453,7 +453,7 @@ static char * %s[] = {
     (if (and window-system (not powerline-gui-use-vcs-glyph))
 	(format-mode-line '(vc-mode vc-mode))
       (format " %s%s"
-	      (char-to-string #xe0a0)
+	      " "
 	      (format-mode-line '(vc-mode vc-mode))))))
 
 ;;;###autoload (autoload 'powerline-buffer-size "powerline")

@@ -825,5 +825,5 @@ static char * arrow_right[] = {
 
 (require 'powerline)
 (load "powerline-themes.el")
-(powerline-default-theme)
+(powerline-default-theme2)
 
