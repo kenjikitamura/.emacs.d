@@ -295,9 +295,15 @@
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
 
-(setq custom-theme-directory "~/.emacs.d/themes/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'wombat-custom t)
+;;(setq custom-theme-directory "~/.emacs.d/themes/")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;;(load-theme 'wombat-custom t)
+
+(unless (package-installed-p 'atom-dark-theme)
+  (package-refresh-contents) (package-install 'atom-dark-theme))
+
+(load-theme 'atom-dark t)
+
 ;(load-theme 'wombat t)
 ;(load-theme 'deeper-blue t)
 ;(enable-theme 'deeper-blue)
@@ -771,7 +777,7 @@ static char * arrow_right[] = {
 
 ;; neotree
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "C-x C-t") 'neotree-toggle)
 
 ;;(require 'javadoc-lookup)
 ;;(global-set-key (kbd "C-x j") 'javadoc-lookup)
@@ -794,6 +800,14 @@ static char * arrow_right[] = {
 
 ;;
 (ffap-bindings)
+
+;; diredを2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のdiredで開いているディレクトリにする
+(setq dired-dwim-target t)
+;; ディレクトリを再帰的にコピーする
+(setq dired-recursive-copies 'always)
+;; diredバッファでC-sした時にファイル名だけにマッチするように
+(setq dired-isearch-filenames t)
+
 (setq dired-dwim-target t)
 
 ;(add-to-list 'load-path "~/Dropbox/work/lisp/")
@@ -826,4 +840,5 @@ static char * arrow_right[] = {
 (require 'powerline)
 (load "powerline-themes.el")
 (powerline-default-theme2)
+
 
