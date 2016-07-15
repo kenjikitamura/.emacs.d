@@ -177,6 +177,7 @@
 (define-key global-map "\M-o" 'delete-blank-lines) ; default C-x C-o
 (define-key global-map "\C-x\C-o" (lambda () (interactive) (other-window -1)))
 (define-key global-map "\C-x'" 'compile) ; default = expand abbrev
+(define-key global-map "\C-xm" 'magit-status) ; default = expand abbrev
 
 (define-key help-map "a" 'apropos)
 
@@ -885,3 +886,6 @@ static char * arrow_right[] = {
 (add-hook 'emacs-startup-hook 'my-load-frame-size)
 (add-hook 'kill-emacs-hook 'my-save-frame-size)
 (run-with-idle-timer 60 t 'my-save-frame-size)
+
+;; visible-bell
+(setq visible-bell t)
