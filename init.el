@@ -278,7 +278,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(linum ((t (:inherit (shadow default) :background "Gray40"))))
+ '(web-mode-comment-face ((t (:foreground "#D9333F"))))
+ '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
+ '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
+ '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-tag-face ((t (:foreground "#E6B422" :weight bold))))
+ '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
 
 ;;-------------------------------------------------------
 ;; yasnippet
@@ -289,8 +298,6 @@
         ))
 (yas-global-mode 1)
 
-(custom-set-variables '(yas-trigger-key "TAB"))
-
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
 ;; 新規スニペットを作成するバッファを用意する
@@ -299,18 +306,9 @@
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
 
-;;(setq custom-theme-directory "~/.emacs.d/themes/")
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;;(load-theme 'wombat-custom t)
-
-(unless (package-installed-p 'atom-dark-theme)
-  (package-refresh-contents) (package-install 'atom-dark-theme))
-
-(load-theme 'atom-dark t)
-
-;(load-theme 'wombat t)
-;(load-theme 'deeper-blue t)
-;(enable-theme 'deeper-blue)
+(setq custom-theme-directory "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'custom-atom-dark t)
 
 ;; バックアップファイルの場所を変更
 (setq backup-directory-alist
@@ -323,11 +321,6 @@
 
 ;; org-mode
 (setq org-agenda-files '("~/Dropbox/work/org"))
-(custom-set-variables
-  '(org-display-custom-times t)
-  '(org-time-stamp-custom-formats (quote ("<%Y年%m月%d日(%a)>" . "<%Y年%m月%d日(%a)%H時%M分>")))
-)
-
 
 ;; navi2ch
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
@@ -451,8 +444,7 @@
 (global-set-key "\M-g" 'goto-line)
 
 ; 行番号の設定
-(custom-set-faces
- '(linum ((t (:inherit (shadow default) :background "Gray40")))))
+
 
 ; Highlight-synbol
 ; C-x C-hでハイライトON/OFF
@@ -555,26 +547,7 @@
 )
 (add-hook 'web-mode-hook  'web-mode-hook)
 ;; 色の設定
-(custom-set-faces
- '(web-mode-doctype-face
-   ((t (:foreground "#82AE46"))))                          ; doctype
- '(web-mode-html-tag-face
-   ((t (:foreground "#E6B422" :weight bold))))             ; 要素名
- '(web-mode-html-attr-name-face
-   ((t (:foreground "#C97586"))))                          ; 属性名など
- '(web-mode-html-attr-value-face
-   ((t (:foreground "#82AE46"))))                          ; 属性値
- '(web-mode-comment-face
-   ((t (:foreground "#D9333F"))))                          ; コメント
- '(web-mode-server-comment-face
-   ((t (:foreground "#D9333F"))))                          ; コメント
- '(web-mode-css-rule-face
-   ((t (:foreground "#A0D8EF"))))                          ; cssのタグ
- '(web-mode-css-pseudo-class-face
-   ((t (:foreground "#FF7F00"))))                          ; css 疑似クラス
- '(web-mode-css-at-rule-face
-   ((t (:foreground "#FF7F00"))))                          ; cssのタグ
-)
+
 
 ; direx
 (require 'direx)
