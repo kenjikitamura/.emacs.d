@@ -883,5 +883,5 @@ static char * arrow_right[] = {
 (migemo-init)
 
 ;; avy
-(global-set-key (kbd "C-j") 'avy-goto-char-timer)
-(global-set-key (kbd "C-i") 'avy-goto-line)
+(global-set-key (kbd "M-i") 'avy-goto-char-timer)
+(global-set-key (kbd "M-l") 'avy-goto-line)
