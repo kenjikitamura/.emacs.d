@@ -43,6 +43,7 @@
     scala-mode2
     avy
     migemo
+    centered-cursor-mode
     yasnippet))
 (let ((not-installed
        (loop for package in my-package-list
@@ -193,7 +194,7 @@
 ;(define-key org-mode-map (quote [67108910]) 'org-goto) ; C-. を C-c C-j 替わりに。
 (define-key org-mode-map (quote [end]) 'org-goto) ; ENDを C-c C-j 替わりに。
 
-(global-set-key "\M-n" 'linum-mode)
+(global-set-key "\M-\C-n" 'linum-mode)
 
 ;
 (require 'auto-save-buffers)
@@ -909,5 +910,5 @@ static char * arrow_right[] = {
 (migemo-init)
 
 ;; avy
-(global-set-key (kbd "C-;") 'avy-goto-char-timer)
-(global-set-key (kbd "C-j") 'avy-goto-line)
+(global-set-key (kbd "C-j") 'avy-goto-char-timer)
+(global-set-key (kbd "C-i") 'avy-goto-line)
