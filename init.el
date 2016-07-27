@@ -778,7 +778,7 @@ static char * arrow_right[] = {
 
 ;; neotree
 (require 'neotree)
-(global-set-key (kbd "C-x C-t") 'neotree-toggle)
+(global-set-key (kbd "C-x t") 'neotree-toggle)
 
 ;;(require 'javadoc-lookup)
 ;;(global-set-key (kbd "C-x j") 'javadoc-lookup)
@@ -846,6 +846,7 @@ static char * arrow_right[] = {
 (require 'logcat)
 
 ;; save windowsize
+(if window-system (progn
 (defconst my-save-frame-file
   "~/.emacs.d/.framesize"
   "フレームの位置、大きさを保存するファイルのパス")
@@ -886,6 +887,7 @@ static char * arrow_right[] = {
 (add-hook 'emacs-startup-hook 'my-load-frame-size)
 (add-hook 'kill-emacs-hook 'my-save-frame-size)
 (run-with-idle-timer 60 t 'my-save-frame-size)
+))
 
 ;; visible-bell
 (setq visible-bell t)
