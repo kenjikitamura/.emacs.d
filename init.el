@@ -44,6 +44,8 @@
     avy
     migemo
     centered-cursor-mode
+    flycheck
+    anzu
     yasnippet))
 (let ((not-installed
        (loop for package in my-package-list
@@ -885,3 +887,13 @@ static char * arrow_right[] = {
 ;; avy
 (global-set-key (kbd "M-i") 'avy-goto-char-timer)
 (global-set-key (kbd "M-l") 'avy-goto-line)
+
+;; magit
+(prefer-coding-system 'utf-8)
+(setq default-process-coding-system 'utf-8)
+
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; anzu
+(global-anzu-mode +1)
