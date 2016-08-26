@@ -322,7 +322,7 @@
 (global-auto-revert-mode 1)
 
 ;; org-mode
-(setq org-agenda-files '("~/Dropbox/work/org"))
+(setq org-agenda-files '("~/Dropbox/work/org" "~/OSDC/Documents/org"))
 
 ;; navi2ch
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
