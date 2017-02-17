@@ -330,13 +330,13 @@
 
 
 ;; GTAGS
-(require 'gtags)
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key (kbd "C-c t") 'helm-gtags-find-tag)
-         (local-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
-         (local-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
-         (local-set-key (kbd "C-c p") 'helm-gtags-pop-stack)))
+;(require 'gtags)
+;(setq gtags-mode-hook
+;      '(lambda ()
+;         (local-set-key (kbd "C-c t") 'helm-gtags-find-tag)
+;         (local-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
+;         (local-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
+;         (local-set-key (kbd "C-c p") 'helm-gtags-pop-stack)))
 
 ;;; hook for gtags
 (add-hook 'c-mode-common-hook 'gtags-mode)
