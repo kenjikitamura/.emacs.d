@@ -597,7 +597,7 @@
 ; quickrun
 (require 'quickrun)
 (push '("*quickrun*") popwin:special-display-config)
-(global-set-key (kbd "C-c r") 'quickrun)
+(global-set-key (kbd "C-c C-r") 'quickrun)
 
 ; 最近使ったファイル
 ; M-x recentf-open-filesで使える
