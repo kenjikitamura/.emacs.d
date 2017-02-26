@@ -1,7 +1,7 @@
 ; ロードパス
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/lisp/rinari")
-(add-to-list 'load-path "~/.emacs.d/lisp/scala-mode2")
+;; (add-to-list 'load-path "~/.emacs.d/lisp/scala-mode2")
 (add-to-list 'load-path "~/.emacs.d/lisp/twittering-mode")
 (add-to-list 'load-path "~/.emacs.d/lisp/scala")
 (add-to-list 'load-path "~/.emacs.d/lisp/yasnippet")
@@ -40,7 +40,8 @@
     ruby-mode
     neotree
     git-gutter
-    scala-mode2
+    point-undo
+;;    scala-mode2
     avy
     migemo
     centered-cursor-mode
@@ -263,17 +264,17 @@
   (unless (y-or-n-p "Really exit emacs? ")
     (keyboard-quit)))
 
-(require 'scala-mode2)
-(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-(add-hook 'scala-mode-hook
-  (function
-    (lambda ()
-      (setq scala-mode-indent:step 4)
-      (scala-mode-lib:define-keys scala-mode-map
-                                  ([(shift tab)]   'scala-undent-line)
-                                  ([(control tab)] nil))
-      (local-set-key [(return)] 'newline-and-indent))))
-(add-hook 'scala-mode-hook 'jaspace-mode)
+;;(require 'scala-mode2)
+;;(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
+;;(add-hook 'scala-mode-hook
+;;  (function
+;;    (lambda ()
+;;      (setq scala-mode-indent:step 4)
+;;      (scala-mode-lib:define-keys scala-mode-map
+;;                                  ([(shift tab)]   'scala-undent-line)
+;;                                  ([(control tab)] nil))
+;;      (local-set-key [(return)] 'newline-and-indent))))
+;;(add-hook 'scala-mode-hook 'jaspace-mode)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -763,11 +764,11 @@ static char * arrow_right[] = {
 ;;(javadoc-add-roots
 ;; "~/javadoc")
 
-(when neo-persist-show
-  (add-hook 'popwin:before-popup-hook
-            (lambda () (setq neo-persist-show nil)))
-  (add-hook 'popwin:after-popup-hook
-            (lambda () (setq neo-persist-show t))))
+;;(when neo-persist-show
+;;  (add-hook 'popwin:before-popup-hook
+;;            (lambda () (setq neo-persist-show nil)))
+;;  (add-hook 'popwin:after-popup-hook
+;;            (lambda () (setq neo-persist-show t))))
 
 
 ;; Ensime
@@ -897,3 +898,32 @@ static char * arrow_right[] = {
 
 ;; anzu
 (global-anzu-mode +1)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-boring-file-regexp-list (quote ("~$" "\\.elc$")))
+ '(helm-buffer-max-length 40)
+ '(helm-delete-minibuffer-contents-from-point t)
+ '(helm-ff-skip-boring-files t)
+ '(helm-ls-git-show-abs-or-relative (quote relative))
+ '(helm-mini-default-sources
+   (quote
+    (helm-source-buffers-list helm-source-ls-git helm-source-recentf helm-source-buffer-not-found)))
+ '(helm-truncate-lines t t)
+ '(package-selected-packages
+   (quote
+    (ensime yasnippet twittering-mode rinari recentf-ext open-junk-file neotree migemo markdown-mode magit highlight-symbol helm-swoop helm-ls-git helm-gtags helm-descbinds helm-ag git-gutter flycheck direx centered-cursor-mode avy auto-complete auto-async-byte-compile anzu))))
+
+;; Python3 for Quickrun
+(quickrun-add-command "python"
+                      '((:command . "python3"))
+                      :override t)
+
+(require 'point-undo)
+(define-key global-map [f7] 'point-undo)
+(define-key global-map [S-f7] 'point-redo)
+
+(require 'tramp)
+(setq tramp-default-method "ssh")
