@@ -21,7 +21,7 @@
 (eval-when-compile (require 'cl))
 (defvar my-package-list
   '(auto-async-byte-compile
-    auto-complete
+    ;;auto-complete
     cperl-mode
     direx
     rinari
@@ -43,6 +43,7 @@
     point-undo
     meghanada
     company
+    gradle-mode
 ;;    scala-mode2
     avy
     migemo
@@ -134,7 +135,7 @@
 (if (>= emacs-major-version 23)
     (progn
       (require 'package)
-      (add-to-list 'package-archives 
+      (add-to-list 'package-archives
                    '("marmalade" .
                      "http://marmalade-repo.org/packages/"))
       (package-initialize))
@@ -203,7 +204,7 @@
 
 ;
 (require 'auto-save-buffers)
-(run-with-idle-timer 5 t 'auto-save-buffers) 
+(run-with-idle-timer 5 t 'auto-save-buffers)
 
 
 ; server
@@ -213,18 +214,18 @@
 
 ;; Rinari : Ruby on Rails Minor Mode for Emacs
 ;; Interactively Do Things (highly recommended, but not strictly required)
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
 ;; Rinari
 (require 'rinari)
 
 
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/Users/kitamura/Dropbox/storage/emacs/site-lisp/auto-complete-1.3.1/ac-dict")
-(add-to-list 'ac-modes 'java-mode)
-(ac-config-default)
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;(require 'auto-complete-config)
+;(add-to-list 'ac-dictionary-directories "/Users/kitamura/Dropbox/storage/emacs/site-lisp/auto-complete-1.3.1/ac-dict")
+;(add-to-list 'ac-modes 'java-mode)
+;(ac-config-default)
+;(require 'auto-complete)
+;(global-auto-complete-mode t)
 
 ;; Twitter
 (require 'twittering-mode)
@@ -336,10 +337,10 @@
 (require 'gtags)
 (setq gtags-mode-hook
       '(lambda ()
-         (local-set-key (kbd "C-c t") 'helm-gtags-find-tag)
-         (local-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
-         (local-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
-         (local-set-key (kbd "C-c p") 'helm-gtags-pop-stack)))
+         (local-set-key (kbd "C-c C-g t") 'helm-gtags-find-tag)
+         (local-set-key (kbd "C-c C-g r") 'helm-gtags-find-rtag)
+         (local-set-key (kbd "C-c C-g s") 'helm-gtags-find-symbol)
+         (local-set-key (kbd "C-c C-g p") 'helm-gtags-pop-stack)))
 
 ;;; hook for gtags
 (add-hook 'c-mode-common-hook 'gtags-mode)
@@ -600,7 +601,7 @@
 ; quickrun
 (require 'quickrun)
 (push '("*quickrun*") popwin:special-display-config)
-(global-set-key (kbd "C-c r") 'quickrun)
+(global-set-key (kbd "C-c C-r") 'quickrun)
 
 ; 最近使ったファイル
 ; M-x recentf-open-filesで使える
@@ -694,7 +695,7 @@ static char * arrow_right[] = {
                         (propertize " %p " 'face 'mode-line-color-2)))
         '(:eval (concat (propertize " " 'display arrow-left-1)
                         (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
-)) 
+))
 
 (make-face 'mode-line-color-1)
 (set-face-attribute 'mode-line-color-1 nil
@@ -934,5 +935,8 @@ static char * arrow_right[] = {
 (add-hook 'java-mode-hook
           (lambda ()
             ;; meghanada-mode on
-            (meghanada-mode t)
-            (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+            (meghanada-mode t)))
+
+;; Gradle
+(require 'gradle-mode)
+(gradle-mode 1)
