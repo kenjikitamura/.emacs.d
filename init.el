@@ -21,7 +21,7 @@
 (eval-when-compile (require 'cl))
 (defvar my-package-list
   '(auto-async-byte-compile
-    auto-complete
+    ;;auto-complete
     cperl-mode
     direx
     rinari
@@ -42,6 +42,7 @@
     git-gutter
     point-undo
     meghanada
+    gradle-mode
 ;;    scala-mode2
     avy
     migemo
@@ -218,12 +219,12 @@
 (require 'rinari)
 
 
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/Users/kitamura/Dropbox/storage/emacs/site-lisp/auto-complete-1.3.1/ac-dict")
-(add-to-list 'ac-modes 'java-mode)
-(ac-config-default)
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;(require 'auto-complete-config)
+;(add-to-list 'ac-dictionary-directories "/Users/kitamura/Dropbox/storage/emacs/site-lisp/auto-complete-1.3.1/ac-dict")
+;(add-to-list 'ac-modes 'java-mode)
+;(ac-config-default)
+;(require 'auto-complete)
+;(global-auto-complete-mode t)
 
 ;; Twitter
 (require 'twittering-mode)
@@ -335,10 +336,10 @@
 (require 'gtags)
 (setq gtags-mode-hook
       '(lambda ()
-         (local-set-key (kbd "C-c t") 'helm-gtags-find-tag)
-         (local-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
-         (local-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
-         (local-set-key (kbd "C-c p") 'helm-gtags-pop-stack)))
+         (local-set-key (kbd "C-c C-g t") 'helm-gtags-find-tag)
+         (local-set-key (kbd "C-c C-g r") 'helm-gtags-find-rtag)
+         (local-set-key (kbd "C-c C-g s") 'helm-gtags-find-symbol)
+         (local-set-key (kbd "C-c C-g p") 'helm-gtags-pop-stack)))
 
 ;;; hook for gtags
 (add-hook 'c-mode-common-hook 'gtags-mode)
@@ -933,5 +934,8 @@ static char * arrow_right[] = {
 (add-hook 'java-mode-hook
           (lambda ()
             ;; meghanada-mode on
-            (meghanada-mode t)
-            (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+            (meghanada-mode t)))
+
+;; Gradle
+(require 'gradle-mode)
+(gradle-mode 1)
