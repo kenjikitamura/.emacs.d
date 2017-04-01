@@ -41,6 +41,8 @@
     neotree
     git-gutter
     point-undo
+    meghanada
+    company
 ;;    scala-mode2
     avy
     migemo
@@ -927,3 +929,10 @@ static char * arrow_right[] = {
 
 (require 'tramp)
 (setq tramp-default-method "ssh")
+
+(require 'meghanada)
+(add-hook 'java-mode-hook
+          (lambda ()
+            ;; meghanada-mode on
+            (meghanada-mode t)
+            (add-hook 'before-save-hook 'delete-trailing-whitespace)))
