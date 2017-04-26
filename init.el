@@ -39,8 +39,9 @@
     recentf-ext
     ruby-mode
     neotree
-    git-gutter
+    git-gutter+
     point-undo
+    adaptive-wrap
 ;;    scala-mode2
     avy
     migemo
@@ -211,8 +212,8 @@
 
 ;; Rinari : Ruby on Rails Minor Mode for Emacs
 ;; Interactively Do Things (highly recommended, but not strictly required)
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
 ;; Rinari
 (require 'rinari)
 
