@@ -334,16 +334,6 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/navi2ch-1.8.4")
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
 
-
-;; GTAGS
-(require 'gtags)
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key (kbd "C-c C-g t") 'helm-gtags-find-tag)
-         (local-set-key (kbd "C-c C-g r") 'helm-gtags-find-rtag)
-         (local-set-key (kbd "C-c C-g s") 'helm-gtags-find-symbol)
-         (local-set-key (kbd "C-c C-g p") 'helm-gtags-pop-stack)))
-
 ;;; hook for gtags
 (add-hook 'c-mode-common-hook 'gtags-mode)
 (add-hook 'c++-mode-hook 'gtags-mode)
