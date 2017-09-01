@@ -610,68 +610,11 @@
 
 ; powerline
 ;; powerline.el
-(defun arrow-right-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\".           \",
-\"..          \",
-\"...         \",
-\"....        \",
-\".....       \",
-\"......      \",
-\".......     \",
-\"........    \",
-\".........   \",
-\".........   \",
-\"........    \",
-\".......     \",
-\"......      \",
-\".....       \",
-\"....        \",
-\"...         \",
-\"..          \",
-\".           \"};"  color1 color2))
-
-(defun arrow-left-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\"           .\",
-\"          ..\",
-\"         ...\",
-\"        ....\",
-\"       .....\",
-\"      ......\",
-\"     .......\",
-\"    ........\",
-\"   .........\",
-\"   .........\",
-\"    ........\",
-\"     .......\",
-\"      ......\",
-\"       .....\",
-\"        ....\",
-\"         ...\",
-\"          ..\",
-\"           .\"};"  color2 color1))
-
 
 (defconst color1 "#384048")
 (defconst color3 "#182028")
 (defconst color2 "#283038")
 (defconst color4 "#CDC0B0")
-
-(defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2) 'xpm t :ascent 'center))
-(defvar arrow-right-2 (create-image (arrow-right-xpm color2 "None") 'xpm t :ascent 'center))
-(defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1) 'xpm t :ascent 'center))
-(defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2) 'xpm t :ascent 'center))
 
 (setq-default mode-line-format
  (list  '(:eval (concat (propertize " %b " 'face 'mode-line-color-1)
