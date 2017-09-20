@@ -712,10 +712,6 @@
 ;; Ensime
 (load "ensime-conf.el")
 
-;; git-guitter
-;; git-gutter
-(global-git-gutter-mode t)
-
 ;;
 (ffap-bindings)
 
@@ -826,10 +822,6 @@
 ;; avy
 (global-set-key (kbd "M-i") 'avy-goto-char-timer)
 (global-set-key (kbd "M-l") 'avy-goto-line)
-
-;; magit
-(prefer-coding-system 'utf-8)
-(setq default-process-coding-system 'utf-8)
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
