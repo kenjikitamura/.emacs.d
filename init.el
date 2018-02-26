@@ -454,8 +454,8 @@
 ;(global-set-key [(meta f3)] 'highlight-symbol-query-replace) ; ハイライトを置換
 
 ;; 適宜keybindの設定
-(global-set-key (kbd "<f3>") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-<f3>") 'highlight-symbol-remove-all)
+(global-set-key (kbd "<f2>") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-<f2>") 'highlight-symbol-remove-all)
 
 
 ;; C-s C-wでカーソル上の単語検索
@@ -902,3 +902,10 @@
 (require 'undo-tree)
 (global-undo-tree-mode t)
 (global-set-key (kbd "M-/") 'undo-tree-redo)
+
+;; 透明度を変更するコマンド M-x set-alpha
+;; http://qiita.com/marcy@github/items/ba0d018a03381a964f24
+(defun set-alpha (alpha-num)
+  "set frame parameter 'alpha"
+  (interactive "nAlpha: ")
+  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
